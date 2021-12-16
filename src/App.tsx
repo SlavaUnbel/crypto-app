@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'antd/dist/antd.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React, { FC } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import { Cryptocurrencies, CryptoDetails, Exchanges, Homepage, Layout, Navbar, News } from './components/components';
+import { routes } from './utils/contants';
+
+const App: FC = () => (
+  <div className="app">
+    <Navbar />
+
+    <Layout>
+      <Routes>
+        <Route path={routes.home} element={<Homepage />} />
+
+        <Route path={routes.exchanges} element={<Exchanges />} />
+
+        <Route path={routes.cryptos} element={<Cryptocurrencies />} />
+
+        <Route path={routes.cryptoDetails} element={<CryptoDetails />} />
+
+        <Route path={routes.news} element={<News />} />
+      </Routes>
+    </Layout>
+  </div>
+);
 
 export default App;
