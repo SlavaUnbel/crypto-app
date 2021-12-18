@@ -14,7 +14,7 @@ const NavMenu: FC = () => {
         </Item>
 
         <Item key="Cryptocurrencies" icon={<FundOutlined />}>
-          <Link to="/cryptos">Cryptocurrencies</Link>
+          <Link to="/cryptocurrencies">Cryptocurrencies</Link>
         </Item>
 
         <Item key="Exchanges" icon={<MoneyCollectOutlined />}>

@@ -9,10 +9,11 @@ interface Props {
 }
 
 const Cryptocurrencies: FC<Props> = ({ simplified }) => {
-  const count = simplified ? 10 : 100;
-  const { data, isLoading } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const count = simplified ? 10 : 100;
+  const { data, isLoading } = useGetCryptosQuery(count);
 
   useEffect(() => {
     setCryptos(

@@ -1,5 +1,5 @@
 import { Typography } from 'antd';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { useGetCryptosQuery } from '../../services/cryptoAPI';
 import { Cryptocurrencies, News } from '../components';
@@ -30,7 +30,7 @@ const Homepage: FC = () => {
           <Cryptocurrencies simplified />
 
           <HomeHeading heading="Latest Crypto News" route="/news" />
-          <News />
+          <News simplified />
         </>
       )}
     </>
