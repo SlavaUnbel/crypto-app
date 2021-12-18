@@ -3,28 +3,28 @@ import { Menu } from 'antd';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { routes } from '../../../utils/contants';
+const { ItemGroup, Item } = Menu;
 
 const NavMenu: FC = () => {
   return (
     <Menu theme="dark" className="nav-menu">
-      <Menu.ItemGroup>
-        <Menu.Item key="Home" icon={<HomeOutlined />}>
-          <Link to={routes.home}>Home</Link>
-        </Menu.Item>
+      <ItemGroup>
+        <Item key="Home" icon={<HomeOutlined />}>
+          <Link to="/">Home</Link>
+        </Item>
 
-        <Menu.Item key="Cryptocurrencies" icon={<FundOutlined />}>
-          <Link to={routes.cryptos}>Cryptocurrencies</Link>
-        </Menu.Item>
+        <Item key="Cryptocurrencies" icon={<FundOutlined />}>
+          <Link to="/cryptos">Cryptocurrencies</Link>
+        </Item>
 
-        <Menu.Item key="Exchanges" icon={<MoneyCollectOutlined />}>
-          <Link to={routes.exchanges}>Exchanges</Link>
-        </Menu.Item>
+        <Item key="Exchanges" icon={<MoneyCollectOutlined />}>
+          <Link to="/exchanges">Exchanges</Link>
+        </Item>
 
-        <Menu.Item key="News" icon={<BulbOutlined />}>
-          <Link to={routes.news}>News</Link>
-        </Menu.Item>
-      </Menu.ItemGroup>
+        <Item key="News" icon={<BulbOutlined />}>
+          <Link to="/news">News</Link>
+        </Item>
+      </ItemGroup>
     </Menu>
   );
 };

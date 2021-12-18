@@ -2,15 +2,15 @@ import { Avatar, Typography } from 'antd';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { navIcon } from '../../../utils/contants';
+const { Title } = Typography;
 
 const Logo: FC = () => (
   <div className="logo-container">
-    <Avatar src={navIcon} size="large" />
+    <Avatar src={process.env.PUBLIC_URL + "/images/favicon.png"} size="large" />
 
-    <Typography.Title level={2} className="logo">
+    <Title level={2} className="logo">
       <Link to="/">Cryptoverse</Link>
-    </Typography.Title>
+    </Title>
   </div>
 );
 
