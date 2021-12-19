@@ -1,28 +1,33 @@
 import 'antd/dist/antd.css';
 
-import React, { FC } from 'react';
+import { Chart, registerables } from 'chart.js';
+import React, { FC, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Cryptocurrencies, CryptoDetails, Exchanges, Homepage, Layout, Navbar, News } from './components/components';
 
-const App: FC = () => (
-  <div className="app">
-    <Navbar />
+const App: FC = () => {
+  Chart.register(...registerables);
 
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
+  return (
+    <div className="app">
+      <Navbar />
 
-        <Route path="/exchanges" element={<Exchanges />} />
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
 
-        <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
+          <Route path="/exchanges" element={<Exchanges />} />
 
-        <Route path="/crypto/:coinId" element={<CryptoDetails />} />
+          <Route path="/cryptocurrencies" element={<Cryptocurrencies />} />
 
-        <Route path="/news" element={<News />} />
-      </Routes>
-    </Layout>
-  </div>
-);
+          <Route path="/crypto/:coinId" element={<CryptoDetails />} />
+
+          <Route path="/news" element={<News />} />
+        </Routes>
+      </Layout>
+    </div>
+  );
+};
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { useGetCryptosQuery } from '../../services/cryptoAPI';
+import Loader from '../loader/Loader';
 import CryptosList from './cryptosList/CryptosList';
 import SearchCrypto from './searchCrypto/SearchCrypto';
 
@@ -14,24 +15,26 @@ const Cryptocurrencies: FC<Props> = ({ simplified }) => {
 
   const count = simplified ? 10 : 100;
   const { data, isLoading } = useGetCryptosQuery(count);
+  const coins = data?.data?.coins;
 
   useEffect(() => {
-    setCryptos(
-      data?.data?.coins?.filter((coin: any) =>
-        coin.name.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }, [data, searchTerm]);
+    !isLoading &&
+      setCryptos(
+        coins.filter((coin: any) =>
+          coin.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+  }, [coins, isLoading, searchTerm]);
 
   return (
     <>
       {isLoading ? (
-        "Loading..."
+        <Loader />
       ) : (
         <>
           {!simplified && <SearchCrypto setSearchTerm={setSearchTerm} />}
 
-          <CryptosList cryptos={cryptos} simplified={simplified} />
+          <CryptosList cryptos={cryptos} />
         </>
       )}
     </>

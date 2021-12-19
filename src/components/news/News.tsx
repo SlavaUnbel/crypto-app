@@ -2,6 +2,7 @@ import { Row } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 
 import { useGetCryptoNewsQuery } from '../../services/cryptoNewsAPI';
+import Loader from '../loader/Loader';
 import NewsCard from './newsCard/NewsCard';
 import SearchNews from './searchNews/SearchNews';
 
@@ -24,8 +25,8 @@ const News: FC<Props> = ({ simplified }) => {
 
   return (
     <>
-      {!newsData || isLoading ? (
-        "Loading..."
+      {isLoading ? (
+        <Loader />
       ) : (
         <Row gutter={[24, 24]}>
           {!simplified && <SearchNews changeCategory={setNewsCategory} />}

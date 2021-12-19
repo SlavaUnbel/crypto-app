@@ -11,5 +11,5 @@ export default configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(cryptoAPI.middleware),
 });

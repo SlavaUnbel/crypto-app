@@ -24,10 +24,14 @@ const SearchNews: FC<Props> = ({ changeCategory }) => {
           option?.options.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        <Option value="Cryptocurrency">Cryptocurrency</Option>
+        <Option key="Cryptocurrency" value="Cryptocurrency">
+          Cryptocurrency
+        </Option>
 
         {cryptos?.data?.coins?.map((coin: any) => (
-          <Option value={coin.name}>{coin.name}</Option>
+          <Option key={coin.name} value={coin.name}>
+            {coin.name}
+          </Option>
         ))}
       </Select>
     </Col>

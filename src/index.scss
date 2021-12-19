@@ -5,6 +5,7 @@
   --pink: #0071bd;
   --light-blue: #e6f7ff;
   --border: hsl(0, 0%, 85%);
+  --border-dark: hsl(0, 0%, 45%);
 }
 
 * {
@@ -21,19 +22,68 @@ a {
   }
 }
 
+@mixin scrollbar($bg-color) {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: $bg-color;
+}
+
+::-webkit-scrollbar-track {
+  @include scrollbar(var(--bgPrimary));
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  @include scrollbar(var(--pink));
+}
+
 .app {
   display: flex;
   overflow: hidden;
 }
 
+.scroll-top {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  opacity: 0.7;
+  background: var(--border);
+  transition: all 0.4s ease;
+
+  &:hover {
+    opacity: 1;
+    background: var(--border-dark);
+  }
+
+  button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+
+    svg {
+      transform: translateY(-1px);
+    }
+  }
+}
+
 .navbar {
-  flex: 0.2;
   background: rgb(0, 21, 41);
 
   .nav-container {
     position: fixed;
     left: 0;
     height: 100vh;
+    width: 250px;
     margin: 0;
     background: rgb(0, 21, 41);
 
@@ -61,8 +111,9 @@ a {
 }
 
 .main {
-  flex: 0.8;
+  flex: 1;
   width: 100%;
+  margin-left: 250px;
 }
 
 .routes {
@@ -80,28 +131,10 @@ a {
 }
 
 .loader {
-  height: 81vh;
+  height: 78vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@media screen and (max-width: 1300px) {
-  .main {
-    margin-left: 50px;
-  }
-}
-
-@media screen and (max-width: 1170px) {
-  .main {
-    margin-left: 50px;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .main {
-    margin-left: 100px;
-  }
 }
 
 @media screen and (max-width: 800px) {
@@ -110,32 +143,42 @@ a {
     overflow: hidden;
   }
 
+  .loader,
+  .main {
+    height: 75vh;
+    width: 100%;
+    margin: 0;
+  }
+
   .navbar {
     flex: 1;
+
+    .menu-control-container {
+      display: block !important;
+    }
+
+    .nav-container {
+      height: 9vh;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      background-color: var(--bgSecondary);
+    }
   }
 
   .main {
     flex: 1;
-    margin-top: 90px;
-    margin-left: 0px;
-    margin-right: 10px;
-  }
-
-  .nav-container {
-    height: 8vh;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    background-color: var(--bgSecondary);
-  }
-
-  .menu-control-container {
-    display: block !important;
+    height: 90vh;
+    margin-top: 10vh;
   }
 
   .ant-menu {
     position: absolute;
     right: 0px;
+  }
+
+  .footer {
+    height: 16vh;
   }
 
   .home-title {

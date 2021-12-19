@@ -1,40 +1,57 @@
 import { Col, Row, Statistic } from 'antd';
-import millify from 'millify';
 import React, { FC } from 'react';
 
-import { useGetCryptosQuery } from '../../../services/cryptoAPI';
+import { millifyHoc } from '../../../app/utils';
 
-const Statistics: FC = () => {
-  const { data } = useGetCryptosQuery(10);
+interface Props {
+  stats: any;
+  isLoading: boolean;
+}
 
+const Statistics: FC<Props> = ({ stats, isLoading }) => {
   const {
     total,
     totalExchanges,
     totalMarketCap,
     total24hVolume,
     totalMarkets,
-  } = data?.data?.stats || {};
+  } = stats;
 
   return (
     <Row>
       <Col span={12}>
-        <Statistic title="Total Cryptocurrencies" value={millify(total)} />
+        <Statistic
+          title="Total Cryptocurrencies"
+          value={!isLoading ? millifyHoc(total) : ""}
+        />
       </Col>
 
       <Col span={12}>
-        <Statistic title="Total Exchanges" value={millify(totalExchanges)} />
+        <Statistic
+          title="Total Exchanges"
+          value={!isLoading ? millifyHoc(totalExchanges) : ""}
+        />
       </Col>
 
       <Col span={12}>
-        <Statistic title="Total Market Cap" value={millify(totalMarketCap)} />
+        <Statistic
+          title="Total Market Cap"
+          value={!isLoading ? millifyHoc(totalMarketCap) : ""}
+        />
       </Col>
 
       <Col span={12}>
-        <Statistic title="Total 24h Volume" value={millify(total24hVolume)} />
+        <Statistic
+          title="Total 24h Volume"
+          value={!isLoading ? millifyHoc(total24hVolume) : ""}
+        />
       </Col>
 
       <Col span={12}>
-        <Statistic title="Total Markets" value={millify(totalMarkets)} />
+        <Statistic
+          title="Total Markets"
+          value={!isLoading ? millifyHoc(totalMarkets) : ""}
+        />
       </Col>
     </Row>
   );
