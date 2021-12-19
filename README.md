@@ -15,7 +15,7 @@
 Open the bash and clone the project:
 
 ```javascript
-git clone https://github.com/SlavaUnbel/scandiweb-graphql-endpoint.git
+git clone https://github.com/SlavaUnbel/crypto-app.git
 ```
 
 Move to the project 📁:
